@@ -22,6 +22,38 @@ under the License.
 This fork includes the following extensions needed for Helioviewer.
 - Chart plugin [Big Calendar](https://www.npmjs.com/package/@helioviewer/superset-plugin-chart-big-calendar)
 
+## Development Environment
+
+To test this instance locally for testing the chart plugins and any other custom dependencies, run the following:
+
+```bash
+docker compose -f docker-compose-light.yml up
+```
+
+### Chart Plugin Testing
+
+1. Navigate to superset-frontend
+
+```bash
+cd superset-frontend
+```
+
+2. Install the dependency locally. npm link does not work correctly here, but you're free to try it.
+
+```bash
+npm install local/path/to/chart/plugin
+```
+
+Note: when pushing an update, make sure to leave the proper npm plugin in package.json and package-lock.json `@helioviewer/superset-plugin-chart-big-calendar`
+
+3. Run the dev server
+
+```bash
+npm run dev-server -- --host 127.0.0.1
+```
+
+4. Navigate to the front end hosted from step 3, and perform testing as needed.
+
 # Superset
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/license/apache-2-0)
