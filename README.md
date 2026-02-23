@@ -32,19 +32,21 @@ docker compose -f docker-compose-light.yml up
 
 ### Chart Plugin Testing
 
-1. Navigate to superset-frontend
+Make sure you have brought up an instance of superset before following these steps.
+
+1. Make your local chart plugin linkable with `npm link`
+
+```
+cd path/to/your/@helioviewer/superset-plugin-chart-big-calendar
+npm link
+```
+
+2. Navigate to superset-frontend and link your local plugin. If your plugin has a different name, use your plugin's name.
 
 ```bash
 cd superset-frontend
+npm link @helioviewer/superset-plugin-chart-big-calendar
 ```
-
-2. Install the dependency locally. npm link does not work correctly here, but you're free to try it.
-
-```bash
-npm install local/path/to/chart/plugin
-```
-
-Note: when pushing an update, make sure to leave the proper npm plugin in package.json and package-lock.json `@helioviewer/superset-plugin-chart-big-calendar`
 
 3. Run the dev server
 
