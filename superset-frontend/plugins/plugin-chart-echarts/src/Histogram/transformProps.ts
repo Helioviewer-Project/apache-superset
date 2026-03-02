@@ -175,6 +175,7 @@ export default function transformProps(
       type: yAxisLogScale ? 'log' : 'value',
       nameLocation: 'middle',
       axisLabel: {
+        //@ts-ignore
         formatter: (value: number) => yAxisFormatter.format(value),
       },
     },
