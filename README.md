@@ -21,6 +21,7 @@ under the License.
 
 This fork includes the following extensions needed for Helioviewer.
 - Chart plugin [Big Calendar](https://www.npmjs.com/package/@helioviewer/superset-plugin-chart-big-calendar)
+- Log-based Y-axis scaling for Histograms
 
 ## Development Environment
 
