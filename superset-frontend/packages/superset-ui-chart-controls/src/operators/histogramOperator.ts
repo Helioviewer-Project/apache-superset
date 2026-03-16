@@ -23,10 +23,19 @@ import { PostProcessingFactory } from './types';
 export const histogramOperator: PostProcessingFactory<
   PostProcessingHistogram
 > = (formData, queryObject) => {
-  const { bins, column, cumulative, groupby = [], normalize } = formData;
+  const { bins, column, cumulative, groupby = [], normalize, data_min, data_max } =
+    formData;
   const parsedBins = Number.isNaN(Number(bins)) ? 5 : Number(bins);
   const parsedColumn = getColumnLabel(column);
   const parsedGroupBy = groupby!.map(getColumnLabel);
+  const parsedDataMin =
+    data_min != null && data_min !== '' && !Number.isNaN(Number(data_min))
+      ? Number(data_min)
+      : undefined;
+  const parsedDataMax =
+    data_max != null && data_max !== '' && !Number.isNaN(Number(data_max))
+      ? Number(data_max)
+      : undefined;
   return {
     operation: 'histogram',
     options: {
@@ -35,6 +44,8 @@ export const histogramOperator: PostProcessingFactory<
       bins: parsedBins,
       cumulative,
       normalize,
+      data_min: parsedDataMin,
+      data_max: parsedDataMax,
     },
   };
 };

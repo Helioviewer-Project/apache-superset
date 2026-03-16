@@ -75,6 +75,38 @@ const config: ControlPanelConfig = {
         ],
         [
           {
+            name: 'data_min',
+            config: {
+              type: 'TextControl',
+              label: t('Data Min'),
+              isFloat: true,
+              default: null,
+              description: t(
+                'The minimum value of the bin range. When set together with Data Max, ' +
+                  'the bin size is fixed as (Data Max - Data Min) / Bins, ensuring ' +
+                  'consistent bin widths regardless of the data range. Leave blank to ' +
+                  'infer the range from the data.',
+              ),
+            },
+          },
+          {
+            name: 'data_max',
+            config: {
+              type: 'TextControl',
+              label: t('Data Max'),
+              isFloat: true,
+              default: null,
+              description: t(
+                'The maximum value of the bin range. When set together with Data Min, ' +
+                  'the bin size is fixed as (Data Max - Data Min) / Bins, ensuring ' +
+                  'consistent bin widths regardless of the data range. Leave blank to ' +
+                  'infer the range from the data.',
+              ),
+            },
+          },
+        ],
+        [
+          {
             name: 'normalize',
             config: {
               type: 'CheckboxControl',
