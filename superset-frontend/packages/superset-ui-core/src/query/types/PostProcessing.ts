@@ -242,6 +242,8 @@ interface _PostProcessingHistogram {
     bins: number;
     cumulative?: boolean;
     normalize?: boolean;
+    data_min?: number;
+    data_max?: number;
   };
 }
 export type PostProcessingHistogram =

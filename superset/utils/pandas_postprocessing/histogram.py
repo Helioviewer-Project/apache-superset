@@ -28,6 +28,8 @@ def histogram(
     bins: int = 5,
     cumulative: bool = False,
     normalize: bool = False,
+    data_min: float | None = None,
+    data_max: float | None = None,
 ) -> DataFrame:
     """
     Generate a histogram DataFrame from a given DataFrame.
@@ -39,6 +41,12 @@ def histogram(
     bins (int): The number of bins to use for the histogram. Default is 5.
     cumulative (bool): Whether to calculate a cumulative histogram. Default is False.
     normalize (bool): Whether to normalize the histogram. Default is False.
+    data_min (float | None): The minimum value for the bin range. When provided together
+        with data_max, controls the bin size: bin_size = (data_max - data_min) / bins.
+        If None, the range is inferred from the data. Default is None.
+    data_max (float | None): The maximum value for the bin range. When provided together
+        with data_min, controls the bin size: bin_size = (data_max - data_min) / bins.
+        If None, the range is inferred from the data. Default is None.
 
     Returns:
     DataFrame: A DataFrame where each row corresponds to a group (or the entire DataFrame if no grouping is performed),
@@ -61,7 +69,8 @@ def histogram(
         raise ValueError(f"Column '{column}' contains non-numeric values")
 
     # calculate the histogram bin edges
-    bin_edges = np.histogram_bin_edges(df[column], bins=bins)
+    bin_range = (data_min, data_max) if data_min is not None and data_max is not None else None
+    bin_edges = np.histogram_bin_edges(df[column], bins=bins, range=bin_range)  # noqa: E501
 
     # convert the bin edges to strings
     bin_edges_str = [

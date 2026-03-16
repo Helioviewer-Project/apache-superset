@@ -33,6 +33,8 @@ export type HistogramFormData = QueryFormData & {
   yAxisFormat: string;
   yAxisLogScale: boolean;
   yAxisTitle: string;
+  data_min?: number | string;
+  data_max?: number | string;
 };
 
 export interface HistogramChartProps extends BaseChartProps<HistogramFormData> {
