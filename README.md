@@ -31,6 +31,11 @@ To test this instance locally for testing the chart plugins and any other custom
 docker compose -f docker-compose-light.yml up
 ```
 
+## To rebuild front-end's package-lock.json (required for deployment) run the following:
+```bash
+docker run --rm --workdir /app -v $PWD/superset-frontend:/app -t node:20-trixie-slim npm i
+```
+
 ### Chart Plugin Testing
 
 Make sure you have brought up an instance of superset before following these steps.
