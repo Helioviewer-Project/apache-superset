@@ -230,7 +230,7 @@ COPY superset-core superset-core
 RUN --mount=type=cache,target=${SUPERSET_HOME}/.cache/uv \
     /app/docker/pip-install.sh --requires-build-essential -r requirements/base.txt && \
     # Helioviewer addition
-    /app/docker/pip-install.sh --requires-build-essential --no-cache pymysql flask-cors psycopg2
+    /app/docker/pip-install.sh --requires-build-essential --no-cache pymysql flask-cors psycopg2 celery-redbeat
 # Install the superset package
 RUN --mount=type=cache,target=${SUPERSET_HOME}/.cache/uv \
     uv pip install -e .
